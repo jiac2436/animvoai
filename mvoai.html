@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Anime AI Voice Generator - Free Online Anime Voice Maker</title>
+  <meta name="description" content="Generate anime-style AI voices online for free. Choose from girl, boy, hero, villain and robot voices. Perfect for VTuber, games and fan dubs.">
+  <link rel="canonical" href="https://animvoai.com/">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Anime AI Voice Generator - Free Online Anime Voice Maker">
+  <meta property="og:description" content="Generate anime-style AI voices online for free. Choose from girl, boy, hero, villain and robot voices. Perfect for VTuber, games and fan dubs.">
+  <meta property="og:url" content="https://animvoai.com/">
+
+  <style>
+    :root {
+      --primary-color: #6C5CE7;
+      --primary-light: #A29BFE;
+      --primary-dark: #5641E5;
+      --accent-color: #FD79A8;
+      --bg-color: #F8F9FE;
+      --card-bg: #FFFFFF;
+      --text-main: #2D3436;
+      --text-muted: #636E72;
+      --border-color: #E2E8F0;
+      --shadow-sm: 0 4px 12px rgba(108, 92, 231, 0.08);
+      --shadow-md: 0 10px 25px rgba(108, 92, 231, 0.12);
+      --shadow-lg: 0 18px 40px rgba(108, 92, 231, 0.18);
+      --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    header {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 36px; }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: var(--primary-color);
+    }
+
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: #FFF;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-links {
+      display: flex; list-style: none; gap: 28px;
+      font-weight: 600; font-size: 0.95rem; color: var(--text-muted);
+    }
+
+    .nav-links a:hover { color: var(--primary-color); transition: var(--transition-smooth); }
+
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+
+    .lang-switcher {
+      display: inline-flex; align-items: center;
+      background: #F1F0FD;
+      border: 1.5px solid rgba(108, 92, 231, 0.25);
+      border-radius: 24px; padding: 4px;
+      cursor: pointer; user-select: none;
+      transition: var(--transition-smooth);
+    }
+
+    .lang-switcher:hover {
+      border-color: var(--primary-color);
+      box-shadow: 0 2px 10px rgba(108, 92, 231, 0.15);
+    }
+
+    .lang-icon { display: flex; align-items: center; padding: 0 6px 0 8px; color: var(--primary-color); }
+
+    .lang-btn {
+      border: none; background: transparent;
+      padding: 5px 12px; font-size: 0.85rem; font-weight: 700;
+      border-radius: 18px; cursor: pointer;
+      color: var(--text-muted);
+      transition: var(--transition-smooth);
+    }
+
+    .lang-btn.active {
+      background: var(--primary-color); color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(108, 92, 231, 0.35);
+    }
+
+    .hero-section { text-align: center; padding: 56px 0 36px; }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(108, 92, 231, 0.1);
+      color: var(--primary-color);
+      font-weight: 700; font-size: 0.85rem;
+      padding: 6px 16px; border-radius: 30px;
+      margin-bottom: 16px; letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 2.85rem; font-weight: 900;
+      color: var(--text-main); margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-desc { font-size: 1.15rem; color: var(--text-muted); max-width: 680px; margin: 0 auto; }
+
+    .generator-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      padding: 36px;
+      max-width: 860px;
+      margin: 0 auto 72px;
+      border: 1px solid rgba(162, 155, 254, 0.25);
+    }
+
+    .form-group { margin-bottom: 22px; }
+
+    .form-group label {
+      display: block; font-weight: 700; font-size: 0.95rem;
+      margin-bottom: 8px; color: var(--text-main);
+    }
+
+    .form-control {
+      width: 100%;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--text-main);
+      background-color: #FAFAFC;
+      transition: var(--transition-smooth);
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-color);
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.15);
+    }
+
+    textarea.form-control { resize: vertical; min-height: 120px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem;
+      padding: 14px 28px; border-radius: 12px;
+      border: none; cursor: pointer;
+      transition: var(--transition-smooth);
+      gap: 8px; text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: #FFFFFF;
+      box-shadow: 0 6px 20px rgba(108, 92, 231, 0.35);
+      width: 100%;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(108, 92, 231, 0.45);
+    }
+
+    .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    .coming-soon-box {
+      margin-top: 28px;
+      padding: 28px 24px;
+      border-radius: 14px;
+      background: #F4F3FF;
+      border: 1px dashed var(--primary-light);
+      text-align: center;
+      display: none;
+    }
+
+    .coming-soon-box h3 {
+      font-size: 1.15rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .coming-soon-box p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+
+    .email-form {
+      display: flex;
+      gap: 10px;
+      max-width: 440px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .email-form input {
+      flex: 1;
+      min-width: 220px;
+      border: 2px solid var(--border-color);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .email-form input:focus { border-color: var(--primary-color); }
+
+    .email-form button {
+      background: var(--primary-color);
+      color: #FFF;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 22px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+    }
+
+    .email-form button:hover { background: var(--primary-dark); }
+
+    .email-success {
+      display: none;
+      color: #00B894;
+      font-weight: 600;
+      margin-top: 14px;
+    }
+
+    .section-title {
+      font-size: 1.85rem; font-weight: 800;
+      color: var(--text-main); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    .section-title::before {
+      content: "";
+      display: block; width: 6px; height: 26px;
+      background: var(--primary-color); border-radius: 4px;
+    }
+
+    .category-group { margin-bottom: 64px; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .seo-card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: var(--transition-smooth);
+      box-shadow: var(--shadow-sm);
+      position: relative; overflow: hidden;
+    }
+
+    .seo-card::after {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+      opacity: 0; transition: var(--transition-smooth);
+    }
+
+    .seo-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-light);
+    }
+
+    .seo-card:hover::after { opacity: 1; }
+
+    .card-icon-img {
+      width: 58px; height: 58px;
+      border-radius: 14px;
+      background: #F0EFFF;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .seo-card h2 {
+      font-size: 1.35rem; font-weight: 700;
+      color: var(--text-main); margin-bottom: 14px; line-height: 1.35;
+    }
+
+    .seo-card p {
+      color: var(--text-muted); font-size: 0.95rem;
+      line-height: 1.65; margin-bottom: 22px; flex-grow: 1;
+    }
+
+    .btn-card {
+      background-color: #F4F3FF;
+      color: var(--primary-color);
+      font-weight: 700; font-size: 0.92rem;
+      padding: 11px 20px; border-radius: 10px;
+      align-self: flex-start;
+      border: 1px solid rgba(108, 92, 231, 0.15);
+      transition: var(--transition-smooth);
+      cursor: pointer;
+    }
+
+    .btn-card:hover {
+      background-color: var(--primary-color);
+      color: #FFFFFF;
+      transform: translateX(4px);
+      box-shadow: 0 4px 14px rgba(108, 92, 231, 0.25);
+    }
+
+    footer {
+      background: #1E272E;
+      color: #D2D7DF;
+      padding: 60px 0 30px;
+      margin-top: 80px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px; margin-bottom: 40px;
+    }
+
+    .footer-brand p { margin-top: 14px; color: #9AA0A6; max-width: 360px; font-size: 0.92rem; }
+
+    .footer-col h3 { color: #FFFFFF; font-size: 1.05rem; margin-bottom: 16px; }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col li { margin-bottom: 10px; }
+
+    .footer-col a { color: #9AA0A6; font-size: 0.9rem; transition: var(--transition-smooth); }
+
+    .footer-col a:hover { color: var(--primary-light); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px; text-align: center;
+      font-size: 0.88rem; color: #718096;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.15rem; }
+      .generator-card { padding: 24px 18px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .nav-links { display: none; }
+      .nav-left { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="nav-left">
+          <a href="/" class="logo-container" aria-label="AnimvoAI Home">
+            <div class="logo-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="22"></line>
+              </svg>
+            </div>
+            <span>AnimvoAI</span>
+          </a>
+          <ul class="nav-links">
+            <li><a href="#tool-area" data-i18n="nav_studio">Voice Studio</a></li>
+            <li><a href="#character-voices" data-i18n="nav_character">Character Types</a></li>
+            <li><a href="#use-cases" data-i18n="nav_cases">Use Cases</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-right">
+          <div class="lang-switcher" role="group" aria-label="Language selection">
+            <div class="lang-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="zh" aria-pressed="false">中文</button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="hero-section">
+      <div class="hero-badge" data-i18n="hero_badge">Next-Gen Anime Speech Synthesis</div>
+      <h1>Anime AI Voice Generator</h1>
+      <p class="hero-desc" data-i18n="hero_desc">
+        Transform your text into authentic, expressive Japanese and English anime character voices with cutting-edge neural audio models.
+      </p>
+    </section>
+
+    <section id="tool-area" class="generator-card" aria-label="AI Voice Generation Tool">
+      <div class="form-group">
+        <label for="script-input" data-i18n="label_script">Input Script / Dialogue Text</label>
+        <textarea 
+          id="script-input" 
+          class="form-control" 
+          rows="4" 
+          placeholder="Type or paste your anime dialogue here... (e.g. 'Omae wa mou shindeiru!')"
+          data-i18n-ph="placeholder_script">Senpai, look! I finally mastered the ultimate technique!</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="character-type" data-i18n="label_character">Choose Anime Character Voice Archetype</label>
+        <select id="character-type" class="form-control">
+          <option value="girl" selected data-i18n="opt_girl">Anime Girl (Tsundere / Sweet Moe)</option>
+          <option value="boy" data-i18n="opt_boy">Anime Boy (Energetic Shonen Protagonist)</option>
+          <option value="hero" data-i18n="opt_hero">Anime Hero (Noble & Courageous Champion)</option>
+          <option value="villain" data-i18n="opt_villain">Anime Villain (Cold, Deep & Menacing)</option>
+          <option value="robot" data-i18n="opt_robot">Anime Robot (Futuristic Mecha & Android AI)</option>
+        </select>
+      </div>
+
+      <button id="generate-btn" class="btn btn-primary" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+        <span id="btn-gen-text" data-i18n="btn_generate">Generate Voice</span>
+      </button>
+
+      <div id="coming-soon-box" class="coming-soon-box">
+        <h3 data-i18n="coming_title">🚀 Voice Engine Launching Soon</h3>
+        <p data-i18n="coming_desc">We're putting the final touches on our anime voice synthesis engine. Leave your email and be the first to try it.</p>
+        <form class="email-form" id="email-form" onsubmit="return false;">
+          <input type="email" id="email-input" placeholder="your@email.com" required>
+          <button type="submit" data-i18n="coming_btn">Notify Me</button>
+        </form>
+        <p class="email-success" id="email-success" data-i18n="coming_success">✅ Thanks! We'll notify you when it's ready.</p>
+      </div>
+    </section>
+
+    <section id="character-voices" class="category-group" aria-label="Anime Voices by Character Type">
+      <div class="section-title" data-i18n="section_character">Explore by Character Type</div>
+      <div class="cards-grid">
+        
+        <article class="seo-card">
+          <div class="card-icon-img">
+            <svg width="34" height="34" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" fill="#FFE0EC"/>
+              <circle cx="18" cy="14" r="6" fill="#FD79A8"/>
+              <path d="M8 30c0-5.5 4.5-10 10-10s10 4.5 10 10" fill="#FD79A8"/>
+            </svg>
+          </div>
+          <h2>Anime Girl Voice Generator</h2>
+          <p data-i18n="desc_girl">
+            Generate expressive anime female voices ranging from energetic tsundere and cheerful kouhai to gentle, soothing magical girls. Our AI captures subtle vocal dynamics and pitch shifts to bring authenticity to visual novels, animation shorts, and character dubbing projects with broadcast-quality clarity.
+          </p>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_girl">Explore Girl Voices →</a>
+        </article>
+
+        <article class="seo-card">
+          <div class="card-icon-img">
+            <svg width="34" height="34" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" fill="#D6E8FF"/>
+              <circle cx="18" cy="14" r="6" fill="#4A90E2"/>
+              <path d="M8 30c0-5.5 4.5-10 10-10s10 4.5 10 10" fill="#4A90E2"/>
+            </svg>
+          </div>
+          <h2>Anime Boy Voice Generator</h2>
+          <p data-i18n="desc_boy">
+            Craft charismatic young male voices with authentic shonen enthusiasm, courageous spirit, and unmistakable determination. Perfect for youthful adventurers, clever strategists, or passionate sports manga protagonists needing spirited battle cries and heartfelt dialogues that resonate with audiences worldwide.
+          </p>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_boy">Explore Boy Voices →</a>
+        </article>
+
+        <article class="seo-card">
+          <div class="card-icon-img">
+            <svg width="34" height="34" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" fill="#FFF0C7"/>
+              <circle cx="18" cy="14" r="6" fill="#F5A623"/>
+              <path d="M8 30c0-5.5 4.5-10 10-10s10 4.5 10 10" fill="#F5A623"/>
+            </svg>
+          </div>
+          <h2>Anime Hero Voice Generator</h2>
+          <p data-i18n="desc_hero">
+            Deliver bold, inspiring speeches with deep resonance and heroic gravitas. Designed for iconic fantasy paladins, valiant warriors, and justice-driven commanders, this voice model imparts unmistakable conviction and cinematic depth to ensure your central protagonist commands the spotlight in every scene.
+          </p>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_hero">Explore Hero Voices →</a>
+        </article>
+
+        <article class="seo-card">
+          <div class="card-icon-img">
+            <svg width="34" height="34" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" fill="#E5D6FF"/>
+              <circle cx="18" cy="14" r="6" fill="#6C5CE7"/>
+              <path d="M8 30c0-5.5 4.5-10 10-10s10 4.5 10 10" fill="#6C5CE7"/>
+            </svg>
+          </div>
+          <h2>Anime Villain Voice Generator</h2>
+          <p data-i18n="desc_villain">
+            Infuse your stories with chilling, magnetic antagonist dialogue featuring dark rasps, cold calculating tones, and menacing laughter. Ideal for mastermind overlords, gothic sorcerers, and antiheroes whose ominous aura requires a spine-tingling presence across indie video games and thrilling animations.
+          </p>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_villain">Explore Villain Voices →</a>
+        </article>
+
+        <article class="seo-card">
+          <div class="card-icon-img">
+            <svg width="34" height="34" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" fill="#D6F5F0"/>
+              <rect x="12" y="10" width="12" height="10" rx="2" fill="#00B894"/>
+              <circle cx="15" cy="15" r="1.5" fill="#FFF"/>
+              <circle cx="21" cy="15" r="1.5" fill="#FFF"/>
+              <path d="M8 30c0-5.5 4.5-10 10-10s10 4.5 10 10" fill="#00B894"/>
+            </svg>
+          </div>
+          <h2>Anime Robot Voice Generator</h2>
+          <p data-i18n="desc_robot">
+            Synthesize futuristic mecha board computers, mechanical android companions, and synthesized cybernetic vocal tones. Featuring metallic vocoder textures, rhythmic cadence, and sci-fi frequency filters tailored for space operas, cyberpunk podcasts, and high-tech robotic gaming companions.
+          </p>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_robot">Explore Robot Voices →</a>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="use-cases" class="category-group" aria-label="Anime Voices by Use Case">
+      <div class="section-title" data-i18n="section_cases">Explore by Application & Use Case</div>
+      <div class="cards-grid">
+
+        <article class="seo-card">
+          <div class="card-icon-img">
+            <svg width="34" height="34" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" fill="#FFE0EC"/>
+              <rect x="10" y="12" width="16" height="12" rx="3" fill="#FD79A8"/>
+              <circle cx="18" cy="18" r="3" fill="#FFF"/>
+            </svg>
+          </div>
+          <h2>Anime Voice Generator for VTuber</h2>
+          <p data-i18n="desc_vtuber">
+            Elevate your virtual streaming persona with real-time capable vocal styling that pairs seamlessly with Live2D and 3D avatars. Generate alert sounds, engaging greeting quotes, lore narration, and interactive stream donations that keep your viewer community immersed in your vibrant virtual universe.
+          </p>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_vtuber">Explore VTuber Voices →</a>
+        </article>
+
+        <article class="seo-card">
+          <div class="card-icon-img">
+            <svg width="34" height="34" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" fill="#D6E8FF"/>
+              <path d="M11 14h14v4H11zM11 20h14v4H11z" fill="#4A90E2"/>
+              <circle cx="14" cy="16" r="1.5" fill="#FFF"/>
+            </svg>
+          </div>
+          <h2>Anime Voice Generator for Games</h2>
+          <p data-i18n="desc_games">
+            Empower indie game developers to produce hundreds of high-quality character NPC audio lines, combat grunts, and storyline dialogue on demand. Dramatically reduce localization costs and casting time while delivering consistent Japanese-style and English dub voice acting across your JRPG or visual novel.
+          </p>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_games">Explore Gaming Voices →</a>
+        </article>
+
+        <article class="seo-card">
+          <div class="card-icon-img">
+            <svg width="34" height="34" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" fill="#FFF0C7"/>
+              <rect x="15" y="8" width="6" height="14" rx="3" fill="#F5A623"/>
+              <path d="M11 18c0 4 3 7 7 7s7-3 7-7" stroke="#F5A623" stroke-width="2" fill="none"/>
+              <line x1="18" y1="25" x2="18" y2="29" stroke="#F5A623" stroke-width="2"/>
+            </svg>
+          </div>
+          <h2>Anime Voice Generator for Fan Dubs</h2>
+          <p data-i18n="desc_fandubs">
+            Bring fan comics, manga scanlations, and social parody skits to life with studio-grade vocal reenactments. Effortlessly produce synchronized character voiceovers that capture emotional nuance and dramatic timing without expensive microphones, audio gear, or acoustic treatment.
+          </p>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_fandubs">Explore Fan Dub Voices →</a>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-container" style="color: #FFF;">
+            <div class="logo-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="22"></line>
+              </svg>
+            </div>
+            <span>AnimvoAI</span>
+          </div>
+          <p data-i18n="footer_brand_desc">The state-of-the-art AI anime voice synthesis platform for content creators, game developers, VTubers, and anime enthusiasts.</p>
+        </div>
+
+        <div class="footer-col">
+          <h3 data-i18n="footer_col1">Character Voices</h3>
+          <ul>
+            <li><a href="#character-voices">Anime Girl</a></li>
+            <li><a href="#character-voices">Anime Boy</a></li>
+            <li><a href="#character-voices">Anime Hero</a></li>
+            <li><a href="#character-voices">Anime Villain</a></li>
+            <li><a href="#character-voices">Anime Robot</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 data-i18n="footer_col2">Use Cases</h3>
+          <ul>
+            <li><a href="#use-cases">VTuber Streaming</a></li>
+            <li><a href="#use-cases">Game Development</a></li>
+            <li><a href="#use-cases">Fan Dubs & Parodies</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 AnimvoAI - Free Online Anime Voice Maker. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        nav_studio: "Voice Studio",
+        nav_character: "Character Types",
+        nav_cases: "Use Cases",
+        hero_badge: "Next-Gen Anime Speech Synthesis",
+        hero_desc: "Transform your text into authentic, expressive Japanese and English anime character voices with cutting-edge neural audio models.",
+        label_script: "Input Script / Dialogue Text",
+        placeholder_script: "Type or paste your anime dialogue here... (e.g. 'Omae wa mou shindeiru!')",
+        label_character: "Choose Anime Character Voice Archetype",
+        opt_girl: "Anime Girl (Tsundere / Sweet Moe)",
+        opt_boy: "Anime Boy (Energetic Shonen Protagonist)",
+        opt_hero: "Anime Hero (Noble & Courageous Champion)",
+        opt_villain: "Anime Villain (Cold, Deep & Menacing)",
+        opt_robot: "Anime Robot (Futuristic Mecha & Android AI)",
+        btn_generate: "Generate Voice",
+        coming_title: "🚀 Voice Engine Launching Soon",
+        coming_desc: "We're putting the final touches on our anime voice synthesis engine. Leave your email and be the first to try it.",
+        coming_btn: "Notify Me",
+        coming_success: "✅ Thanks! We'll notify you when it's ready.",
+        section_character: "Explore by Character Type",
+        desc_girl: "Generate expressive anime female voices ranging from energetic tsundere and cheerful kouhai to gentle, soothing magical girls. Our AI captures subtle vocal dynamics and pitch shifts to bring authenticity to visual novels, animation shorts, and character dubbing projects with broadcast-quality clarity.",
+        btn_girl: "Explore Girl Voices →",
+        desc_boy: "Craft charismatic young male voices with authentic shonen enthusiasm, courageous spirit, and unmistakable determination. Perfect for youthful adventurers, clever strategists, or passionate sports manga protagonists needing spirited battle cries and heartfelt dialogues that resonate with audiences worldwide.",
+        btn_boy: "Explore Boy Voices →",
+        desc_hero: "Deliver bold, inspiring speeches with deep resonance and heroic gravitas. Designed for iconic fantasy paladins, valiant warriors, and justice-driven commanders, this voice model imparts unmistakable conviction and cinematic depth to ensure your central protagonist commands the spotlight in every scene.",
+        btn_hero: "Explore Hero Voices →",
+        desc_villain: "Infuse your stories with chilling, magnetic antagonist dialogue featuring dark rasps, cold calculating tones, and menacing laughter. Ideal for mastermind overlords, gothic sorcerers, and antiheroes whose ominous aura requires a spine-tingling presence across indie video games and thrilling animations.",
+        btn_villain: "Explore Villain Voices →",
+        desc_robot: "Synthesize futuristic mecha board computers, mechanical android companions, and synthesized cybernetic vocal tones. Featuring metallic vocoder textures, rhythmic cadence, and sci-fi frequency filters tailored for space operas, cyberpunk podcasts, and high-tech robotic gaming companions.",
+        btn_robot: "Explore Robot Voices →",
+        section_cases: "Explore by Application & Use Case",
+        desc_vtuber: "Elevate your virtual streaming persona with real-time capable vocal styling that pairs seamlessly with Live2D and 3D avatars. Generate alert sounds, engaging greeting quotes, lore narration, and interactive stream donations that keep your viewer community immersed in your vibrant virtual universe.",
+        btn_vtuber: "Explore VTuber Voices →",
+        desc_games: "Empower indie game developers to produce hundreds of high-quality character NPC audio lines, combat grunts, and storyline dialogue on demand. Dramatically reduce localization costs and casting time while delivering consistent Japanese-style and English dub voice acting across your JRPG or visual novel.",
+        btn_games: "Explore Gaming Voices →",
+        desc_fandubs: "Bring fan comics, manga scanlations, and social parody skits to life with studio-grade vocal reenactments. Effortlessly produce synchronized character voiceovers that capture emotional nuance and dramatic timing without expensive microphones, audio gear, or acoustic treatment.",
+        btn_fandubs: "Explore Fan Dub Voices →",
+        footer_brand_desc: "The state-of-the-art AI anime voice synthesis platform for content creators, game developers, VTubers, and anime enthusiasts.",
+        footer_col1: "Character Voices",
+        footer_col2: "Use Cases",
+        alert_empty: "Please enter some text to generate anime voice!"
+      },
+      zh: {
+        nav_studio: "配音工作室",
+        nav_character: "角色分类",
+        nav_cases: "应用场景",
+        hero_badge: "新一代二次元 AI 语音合成引擎",
+        hero_desc: "基于深度神经网络声学模型，将你的台词文本一键转换为纯正、生动且极富情感表现力的动漫角色语音。",
+        label_script: "输入台词 / 对白剧本文本",
+        placeholder_script: "在此输入或粘贴动漫台词...（例如：前辈，看我的终极必杀技！）",
+        label_character: "选择动漫角色声音类型",
+        opt_girl: "动漫少女（傲娇 / 萌系 / 甜美学妹）",
+        opt_boy: "动漫少年（热血王道主角 / 活力阳光）",
+        opt_hero: "动漫英雄（庄重威严 / 正义领袖）",
+        opt_villain: "动漫反派（冷酷磁性 / 阴险霸主）",
+        opt_robot: "动漫机械（未来机甲 / 赛博智能助手）",
+        btn_generate: "立即生成语音",
+        coming_title: "🚀 语音引擎即将上线",
+        coming_desc: "我们正在对动漫语音合成引擎做最后的调试。留下邮箱，第一时间体验。",
+        coming_btn: "通知我",
+        coming_success: "✅ 已收到！上线后我们会第一时间通知你。",
+        section_character: "按角色类型浏览",
+        desc_girl: "轻松生成富有张力的动漫女声，涵盖活力傲娇、清纯学妹与治愈系魔法少女音色。AI 深度还原音调变化与语气细节，为视觉小说、二次元短片及角色配音提供广播级高音质。",
+        btn_girl: "探索少女音色 →",
+        desc_boy: "打造充满少年感与冒险精神的年轻男声，完美呈现热血、坚毅与不屈的羁绊之声。非常适合年轻冒险者、智慧军师及热血运动题材主角的战吼与深情对白。",
+        btn_boy: "探索少年音色 →",
+        desc_hero: "呈现充满力量与史诗感的英雄领袖嗓音，兼具沉稳共鸣与崇高信念。专为奇幻圣骑士、勇猛战士及正义指挥官量身定制，让核心主角在每个重大场景中都极具号召力。",
+        btn_hero: "探索英雄音色 →",
+        desc_villain: "为你的故事注入阴郁迷人的反派声线，涵盖低沉沙哑、冷酷计算与令人战栗的笑声。非常适合深沉霸主、黑化术士及反英雄角色，在独立游戏与动画中树立压迫感。",
+        btn_villain: "探索反派音色 →",
+        desc_robot: "合成极具未来科技感的机甲车载电脑、人造人伙伴及合成声线。具备金属相位声码器质感、规律语调与科幻滤波效果，专为太空歌剧、赛博朋克与科幻游戏打造。",
+        btn_robot: "探索机械音色 →",
+        section_cases: "按使用场景浏览",
+        desc_vtuber: "为你的虚拟主播形象赋予生动且具辨识度的声线，深度契合 Live2D 与 3D 模型。可快速制作入场欢迎语、上舰提示音、背景世界观解说及打赏互动语音。",
+        btn_vtuber: "探索 VTuber 场景 →",
+        desc_games: "助力独立游戏开发者批量生成高品质 NPC 对话、战斗音效及剧情配音。大幅缩短选角周期并削减本地化成本，为 JRPG、AVG 视觉小说打造纯正沉浸感。",
+        btn_games: "探索游戏开发场景 →",
+        desc_fandubs: "无需昂贵的录音麦克风与隔音室，即可为同人漫画、汉化漫话及恶搞二创短视频赋予影视级声演表现力，精准传达角色情绪起伏与戏剧化节奏。",
+        btn_fandubs: "探索同人二创场景 →",
+        footer_brand_desc: "专为内容创作者、游戏开发者、虚拟主播及二次元爱好者打造的前沿 AI 动漫语音合成平台。",
+        footer_col1: "角色音色",
+        footer_col2: "应用场景",
+        alert_empty: "请输入需要合成配音的台词文本！"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        const isActive = btn.dataset.lang === lang;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (translations[lang] && translations[lang][key]) {
+          el.setAttribute('placeholder', translations[lang][key]);
+        }
+      });
+
+      try { localStorage.setItem('anime_voice_lang', lang); } catch (e) {}
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const selected = e.target.getAttribute('data-lang');
+          setLanguage(selected);
+        });
+      });
+
+      try {
+        const savedLang = localStorage.getItem('anime_voice_lang');
+        if (savedLang && (savedLang === 'en' || savedLang === 'zh')) {
+          setLanguage(savedLang);
+        }
+      } catch(e) {}
+
+      const generateBtn = document.getElementById('generate-btn');
+      const comingSoonBox = document.getElementById('coming-soon-box');
+      const emailForm = document.getElementById('email-form');
+      const emailSuccess = document.getElementById('email-success');
+
+      generateBtn.addEventListener('click', () => {
+        comingSoonBox.style.display = 'block';
+        comingSoonBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+
+      emailForm.addEventListener('submit', () => {
+        const email = document.getElementById('email-input').value.trim();
+        if (email) {
+          emailSuccess.style.display = 'block';
+          emailForm.style.display = 'none';
+          // TODO: 之后接真实表单服务（如 Formspree / Tally）
+        }
+      });
+    });
+  </script>
+</body>
+</html>
