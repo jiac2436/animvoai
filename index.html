@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  <!-- SEO 标题与元标签 (Title & Meta Description) -->
   <title>Anime AI Voice Generator - Free Online Anime Voice Maker</title>
   <meta name="description" content="Generate anime-style AI voices online for free. Choose from girl, boy, hero, villain and robot voices. Perfect for VTuber, games and fan dubs.">
   <link rel="canonical" href="https://animvoai.com/">
   
+  <!-- Open Graph 社交标签 -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Anime AI Voice Generator - Free Online Anime Voice Maker">
   <meta property="og:description" content="Generate anime-style AI voices online for free. Choose from girl, boy, hero, villain and robot voices. Perfect for VTuber, games and fan dubs.">
@@ -15,11 +17,11 @@
 
   <style>
     :root {
-      --primary-color: #6C5CE7;
-      --primary-light: #A29BFE;
-      --primary-dark: #5641E5;
-      --accent-color: #FD79A8;
-      --bg-color: #F8F9FE;
+      --primary-color: #6C5CE7;      /* 主色：二次元紫 */
+      --primary-light: #A29BFE;      /* 辅助浅紫 */
+      --primary-dark: #5641E5;       /* 悬停深紫 */
+      --accent-color: #FD79A8;       /* 强调点缀粉 */
+      --bg-color: #F8F9FE;           /* 背景底色 */
       --card-bg: #FFFFFF;
       --text-main: #2D3436;
       --text-muted: #636E72;
@@ -44,6 +46,7 @@
 
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
+    /* Header & 导航栏 */
     header {
       background: #FFFFFF;
       border-bottom: 1px solid var(--border-color);
@@ -89,6 +92,7 @@
 
     .nav-right { display: flex; align-items: center; gap: 16px; }
 
+    /* 语言切换胶囊按钮 */
     .lang-switcher {
       display: inline-flex; align-items: center;
       background: #F1F0FD;
@@ -118,6 +122,7 @@
       box-shadow: 0 2px 8px rgba(108, 92, 231, 0.35);
     }
 
+    /* Hero SEO 标题区 (H1) */
     .hero-section { text-align: center; padding: 56px 0 36px; }
 
     .hero-badge {
@@ -138,6 +143,7 @@
 
     .hero-desc { font-size: 1.15rem; color: var(--text-muted); max-width: 680px; margin: 0 auto; }
 
+    /* 顶部核心工具卡片 */
     .generator-card {
       background: var(--card-bg);
       border-radius: 20px;
@@ -174,7 +180,7 @@
       box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.15);
     }
 
-    textarea.form-control { resize: vertical; min-height: 120px; }
+    textarea.form-control { resize: vertical; min-height: 110px; }
 
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
@@ -197,34 +203,76 @@
       box-shadow: 0 8px 24px rgba(108, 92, 231, 0.45);
     }
 
-    .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; }
+    /* 加载 Spinner 动效 */
+    .loading-spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2.5px solid rgba(255, 255, 255, 0.35);
+      border-radius: 50%;
+      border-top-color: #FFFFFF;
+      animation: spin 0.8s linear infinite;
+    }
 
-    .coming-soon-box {
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* 邮箱内测预约卡片（默认隐藏 display: none，点击后展示） */
+    .waitlist-section {
+      display: none; /* 默认隐藏，点击生成后再展示 */
       margin-top: 28px;
-      padding: 28px 24px;
-      border-radius: 14px;
-      background: #F4F3FF;
-      border: 1px dashed var(--primary-light);
+      padding: 32px 24px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #F8F7FF 0%, #F1F0FF 100%);
+      border: 1.5px dashed var(--primary-light);
       text-align: center;
-      display: none;
+      animation: slideDownFade 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .coming-soon-box h3 {
-      font-size: 1.15rem;
+    @keyframes slideDownFade {
+      from {
+        opacity: 0;
+        transform: translateY(-12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .waitlist-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(108, 92, 231, 0.12);
       color: var(--primary-color);
-      margin-bottom: 10px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
     }
 
-    .coming-soon-box p {
+    .waitlist-section h3 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .waitlist-section p {
       color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 18px;
+      font-size: 0.98rem;
+      max-width: 580px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
     }
 
     .email-form {
       display: flex;
-      gap: 10px;
-      max-width: 440px;
+      gap: 12px;
+      max-width: 500px;
       margin: 0 auto;
       flex-wrap: wrap;
       justify-content: center;
@@ -232,38 +280,67 @@
 
     .email-form input {
       flex: 1;
-      min-width: 220px;
+      min-width: 250px;
       border: 2px solid var(--border-color);
-      border-radius: 10px;
-      padding: 12px 14px;
-      font-size: 0.95rem;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 1rem;
       outline: none;
       font-family: inherit;
-    }
-
-    .email-form input:focus { border-color: var(--primary-color); }
-
-    .email-form button {
-      background: var(--primary-color);
-      color: #FFF;
-      border: none;
-      border-radius: 10px;
-      padding: 12px 22px;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 0.95rem;
+      background: #FFFFFF;
       transition: var(--transition-smooth);
     }
 
-    .email-form button:hover { background: var(--primary-dark); }
-
-    .email-success {
-      display: none;
-      color: #00B894;
-      font-weight: 600;
-      margin-top: 14px;
+    .email-form input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15);
     }
 
+    .email-form button {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: #FFFFFF;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 26px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 14px rgba(108, 92, 231, 0.3);
+      white-space: nowrap;
+    }
+
+    .email-form button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(108, 92, 231, 0.4);
+    }
+
+    .email-form button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .email-success-box {
+      display: none;
+      background: #E8F8F5;
+      border: 1px solid #A3E4D7;
+      color: #117864;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      margin-top: 16px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 分类卡片区域 (SEO H2) */
     .section-title {
       font-size: 1.85rem; font-weight: 800;
       color: var(--text-main); margin-bottom: 24px;
@@ -312,8 +389,7 @@
 
     .card-icon-img {
       width: 58px; height: 58px;
-      border-radius: 14px;
-      background: #F0EFFF;
+      border-radius: 14px; background: #F0EFFF;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 18px;
     }
@@ -346,6 +422,7 @@
       box-shadow: 0 4px 14px rgba(108, 92, 231, 0.25);
     }
 
+    /* Footer */
     footer {
       background: #1E272E;
       color: #D2D7DF;
@@ -360,15 +437,10 @@
     }
 
     .footer-brand p { margin-top: 14px; color: #9AA0A6; max-width: 360px; font-size: 0.92rem; }
-
     .footer-col h3 { color: #FFFFFF; font-size: 1.05rem; margin-bottom: 16px; }
-
     .footer-col ul { list-style: none; }
-
     .footer-col li { margin-bottom: 10px; }
-
     .footer-col a { color: #9AA0A6; font-size: 0.9rem; transition: var(--transition-smooth); }
-
     .footer-col a:hover { color: var(--primary-light); }
 
     .footer-bottom {
@@ -398,6 +470,7 @@
 </head>
 <body>
 
+  <!-- Header & Nav -->
   <header>
     <div class="container">
       <nav>
@@ -419,6 +492,7 @@
           </ul>
         </div>
 
+        <!-- 右上角中英切换 -->
         <div class="nav-right">
           <div class="lang-switcher" role="group" aria-label="Language selection">
             <div class="lang-icon" aria-hidden="true">
@@ -438,6 +512,7 @@
 
   <main class="container">
 
+    <!-- SEO H1 标题区域 -->
     <section class="hero-section">
       <div class="hero-badge" data-i18n="hero_badge">Next-Gen Anime Speech Synthesis</div>
       <h1>Anime AI Voice Generator</h1>
@@ -446,7 +521,8 @@
       </p>
     </section>
 
-    <section id="tool-area" class="generator-card" aria-label="AI Voice Generation Tool">
+    <!-- 核心工具区域 -->
+    <section id="tool-area" class="generator-card" aria-label="Anime Voice Tool Studio">
       <div class="form-group">
         <label for="script-input" data-i18n="label_script">Input Script / Dialogue Text</label>
         <textarea 
@@ -477,17 +553,24 @@
         <span id="btn-gen-text" data-i18n="btn_generate">Generate Voice</span>
       </button>
 
-      <div id="coming-soon-box" class="coming-soon-box">
-        <h3 data-i18n="coming_title">🚀 Voice Engine Launching Soon</h3>
-        <p data-i18n="coming_desc">We're putting the final touches on our anime voice synthesis engine. Leave your email and be the first to try it.</p>
-        <form class="email-form" id="email-form" onsubmit="return false;">
-          <input type="email" id="email-input" placeholder="your@email.com" required>
-          <button type="submit" data-i18n="coming_btn">Notify Me</button>
+      <!-- 邮件预约部分：默认隐藏，点击“Generate Voice / 立即生成”后才出现 -->
+      <div id="waitlist-card" class="waitlist-section">
+        <div class="waitlist-badge">🚀 Private Beta Launching Soon</div>
+        <h3 data-i18n="coming_title">Be the First to Experience AnimvoAI</h3>
+        <p data-i18n="coming_desc">Our ultra-realistic anime voice synthesis engine is currently in final testing. Join the waitlist today and get 50 free voice credits on launch!</p>
+        
+        <form class="email-form" id="email-form">
+          <input type="email" id="email-input" placeholder="Enter your email (e.g. user@gmail.com)" required data-i18n-ph="email_placeholder">
+          <button type="submit" id="email-submit-btn" data-i18n="coming_btn">Get Early Access</button>
         </form>
-        <p class="email-success" id="email-success" data-i18n="coming_success">✅ Thanks! We'll notify you when it's ready.</p>
+
+        <div class="email-success-box" id="email-success" data-i18n="coming_success">
+          🎉 You're on the priority waitlist! We will notify you as soon as the voice generator is live.
+        </div>
       </div>
     </section>
 
+    <!-- SECTION 1: 按角色类型 (SEO H2) -->
     <section id="character-voices" class="category-group" aria-label="Anime Voices by Character Type">
       <div class="section-title" data-i18n="section_character">Explore by Character Type</div>
       <div class="cards-grid">
@@ -504,7 +587,7 @@
           <p data-i18n="desc_girl">
             Generate expressive anime female voices ranging from energetic tsundere and cheerful kouhai to gentle, soothing magical girls. Our AI captures subtle vocal dynamics and pitch shifts to bring authenticity to visual novels, animation shorts, and character dubbing projects with broadcast-quality clarity.
           </p>
-          <a class="btn btn-card" href="#tool-area" data-i18n="btn_girl">Explore Girl Voices →</a>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_girl">Explore Girl Voices &rarr;</a>
         </article>
 
         <article class="seo-card">
@@ -519,7 +602,7 @@
           <p data-i18n="desc_boy">
             Craft charismatic young male voices with authentic shonen enthusiasm, courageous spirit, and unmistakable determination. Perfect for youthful adventurers, clever strategists, or passionate sports manga protagonists needing spirited battle cries and heartfelt dialogues that resonate with audiences worldwide.
           </p>
-          <a class="btn btn-card" href="#tool-area" data-i18n="btn_boy">Explore Boy Voices →</a>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_boy">Explore Boy Voices &rarr;</a>
         </article>
 
         <article class="seo-card">
@@ -534,7 +617,7 @@
           <p data-i18n="desc_hero">
             Deliver bold, inspiring speeches with deep resonance and heroic gravitas. Designed for iconic fantasy paladins, valiant warriors, and justice-driven commanders, this voice model imparts unmistakable conviction and cinematic depth to ensure your central protagonist commands the spotlight in every scene.
           </p>
-          <a class="btn btn-card" href="#tool-area" data-i18n="btn_hero">Explore Hero Voices →</a>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_hero">Explore Hero Voices &rarr;</a>
         </article>
 
         <article class="seo-card">
@@ -549,7 +632,7 @@
           <p data-i18n="desc_villain">
             Infuse your stories with chilling, magnetic antagonist dialogue featuring dark rasps, cold calculating tones, and menacing laughter. Ideal for mastermind overlords, gothic sorcerers, and antiheroes whose ominous aura requires a spine-tingling presence across indie video games and thrilling animations.
           </p>
-          <a class="btn btn-card" href="#tool-area" data-i18n="btn_villain">Explore Villain Voices →</a>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_villain">Explore Villain Voices &rarr;</a>
         </article>
 
         <article class="seo-card">
@@ -566,12 +649,13 @@
           <p data-i18n="desc_robot">
             Synthesize futuristic mecha board computers, mechanical android companions, and synthesized cybernetic vocal tones. Featuring metallic vocoder textures, rhythmic cadence, and sci-fi frequency filters tailored for space operas, cyberpunk podcasts, and high-tech robotic gaming companions.
           </p>
-          <a class="btn btn-card" href="#tool-area" data-i18n="btn_robot">Explore Robot Voices →</a>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_robot">Explore Robot Voices &rarr;</a>
         </article>
 
       </div>
     </section>
 
+    <!-- SECTION 2: 按应用场景 (SEO H2) -->
     <section id="use-cases" class="category-group" aria-label="Anime Voices by Use Case">
       <div class="section-title" data-i18n="section_cases">Explore by Application & Use Case</div>
       <div class="cards-grid">
@@ -588,7 +672,7 @@
           <p data-i18n="desc_vtuber">
             Elevate your virtual streaming persona with real-time capable vocal styling that pairs seamlessly with Live2D and 3D avatars. Generate alert sounds, engaging greeting quotes, lore narration, and interactive stream donations that keep your viewer community immersed in your vibrant virtual universe.
           </p>
-          <a class="btn btn-card" href="#tool-area" data-i18n="btn_vtuber">Explore VTuber Voices →</a>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_vtuber">Explore VTuber Voices &rarr;</a>
         </article>
 
         <article class="seo-card">
@@ -603,7 +687,7 @@
           <p data-i18n="desc_games">
             Empower indie game developers to produce hundreds of high-quality character NPC audio lines, combat grunts, and storyline dialogue on demand. Dramatically reduce localization costs and casting time while delivering consistent Japanese-style and English dub voice acting across your JRPG or visual novel.
           </p>
-          <a class="btn btn-card" href="#tool-area" data-i18n="btn_games">Explore Gaming Voices →</a>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_games">Explore Gaming Voices &rarr;</a>
         </article>
 
         <article class="seo-card">
@@ -619,7 +703,7 @@
           <p data-i18n="desc_fandubs">
             Bring fan comics, manga scanlations, and social parody skits to life with studio-grade vocal reenactments. Effortlessly produce synchronized character voiceovers that capture emotional nuance and dramatic timing without expensive microphones, audio gear, or acoustic treatment.
           </p>
-          <a class="btn btn-card" href="#tool-area" data-i18n="btn_fandubs">Explore Fan Dub Voices →</a>
+          <a class="btn btn-card" href="#tool-area" data-i18n="btn_fandubs">Explore Fan Dub Voices &rarr;</a>
         </article>
 
       </div>
@@ -627,6 +711,7 @@
 
   </main>
 
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footer-grid">
@@ -671,7 +756,9 @@
     </div>
   </footer>
 
+  <!-- JavaScript: 包含多语言翻译、点击生成展示邮件卡片与提交埋点 -->
   <script>
+    // 1. 中英完整双语词典
     const translations = {
       en: {
         nav_studio: "Voice Studio",
@@ -688,8 +775,217 @@
         opt_villain: "Anime Villain (Cold, Deep & Menacing)",
         opt_robot: "Anime Robot (Futuristic Mecha & Android AI)",
         btn_generate: "Generate Voice",
-        coming_title: "🚀 Voice Engine Launching Soon",
-        coming_desc: "We're putting the final touches on our anime voice synthesis engine. Leave your email and be the first to try it.",
-        coming_btn: "Notify Me",
-        coming_success: "✅ Thanks! We'll notify you when it's ready.",
-        section_character: "Explore by Character
+        coming_title: "Be the First to Experience AnimvoAI",
+        coming_desc: "Our ultra-realistic anime voice synthesis engine is currently in final testing. Join the waitlist today and get 50 free voice credits on launch!",
+        coming_btn: "Get Early Access",
+        email_placeholder: "Enter your email (e.g. user@gmail.com)",
+        coming_success: "🎉 You're on the priority waitlist! We will notify you as soon as the voice generator is live.",
+        section_character: "Explore by Character Type",
+        desc_girl: "Generate expressive anime female voices ranging from energetic tsundere and cheerful kouhai to gentle, soothing magical girls. Our AI captures subtle vocal dynamics and pitch shifts to bring authenticity to visual novels, animation shorts, and character dubbing projects with broadcast-quality clarity.",
+        btn_girl: "Explore Girl Voices →",
+        desc_boy: "Craft charismatic young male voices with authentic shonen enthusiasm, courageous spirit, and unmistakable determination. Perfect for youthful adventurers, clever strategists, or passionate sports manga protagonists needing spirited battle cries and heartfelt dialogues that resonate with audiences worldwide.",
+        btn_boy: "Explore Boy Voices →",
+        desc_hero: "Deliver bold, inspiring speeches with deep resonance and heroic gravitas. Designed for iconic fantasy paladins, valiant warriors, and justice-driven commanders, this voice model imparts unmistakable conviction and cinematic depth to ensure your central protagonist commands the spotlight in every scene.",
+        btn_hero: "Explore Hero Voices →",
+        desc_villain: "Infuse your stories with chilling, magnetic antagonist dialogue featuring dark rasps, cold calculating tones, and menacing laughter. Ideal for mastermind overlords, gothic sorcerers, and antiheroes whose ominous aura requires a spine-tingling presence across indie video games and thrilling animations.",
+        btn_villain: "Explore Villain Voices →",
+        desc_robot: "Synthesize futuristic mecha board computers, mechanical android companions, and synthesized cybernetic vocal tones. Featuring metallic vocoder textures, rhythmic cadence, and sci-fi frequency filters tailored for space operas, cyberpunk podcasts, and high-tech robotic gaming companions.",
+        btn_robot: "Explore Robot Voices →",
+        section_cases: "Explore by Application & Use Case",
+        desc_vtuber: "Elevate your virtual streaming persona with real-time capable vocal styling that pairs seamlessly with Live2D and 3D avatars. Generate alert sounds, engaging greeting quotes, lore narration, and interactive stream donations that keep your viewer community immersed in your vibrant virtual universe.",
+        btn_vtuber: "Explore VTuber Voices →",
+        desc_games: "Empower indie game developers to produce hundreds of high-quality character NPC audio lines, combat grunts, and storyline dialogue on demand. Dramatically reduce localization costs and casting time while delivering consistent Japanese-style and English dub voice acting across your JRPG or visual novel.",
+        btn_games: "Explore Gaming Voices →",
+        desc_fandubs: "Bring fan comics, manga scanlations, and social parody skits to life with studio-grade vocal reenactments. Effortlessly produce synchronized character voiceovers that capture emotional nuance and dramatic timing without expensive microphones, audio gear, or acoustic treatment.",
+        btn_fandubs: "Explore Fan Dub Voices →",
+        footer_brand_desc: "The state-of-the-art AI anime voice synthesis platform for content creators, game developers, VTubers, and anime enthusiasts.",
+        footer_col1: "Character Voices",
+        footer_col2: "Use Cases",
+        alert_empty: "Please enter some text to generate anime voice!"
+      },
+      zh: {
+        nav_studio: "配音工作室",
+        nav_character: "角色分类",
+        nav_cases: "应用场景",
+        hero_badge: "新一代二次元 AI 语音合成引擎",
+        hero_desc: "基于深度神经网络声学模型，将你的台词文本一键转换为纯正、生动且极富情感表现力的动漫角色语音。",
+        label_script: "输入台词 / 对白剧本文本",
+        placeholder_script: "在此输入或粘贴动漫台词...（例如：前辈，看我的终极必杀技！）",
+        label_character: "选择动漫角色声音类型",
+        opt_girl: "动漫少女（傲娇 / 萌系 / 甜美学妹）",
+        opt_boy: "动漫少年（热血王道主角 / 活力阳光）",
+        opt_hero: "动漫英雄（庄重威严 / 正义领袖）",
+        opt_villain: "动漫反派（冷酷磁性 / 阴险霸主）",
+        opt_robot: "动漫机械（未来机甲 / 赛博智能助手）",
+        btn_generate: "立即生成语音",
+        coming_title: "抢先体验 AnimvoAI 语音合成引擎",
+        coming_desc: "我们的超写实二次元神经网络音色模型正处于内测收尾阶段。立即登记邮箱加入排队列表，上线即可免费获赠 50 点语音生成点数！",
+        coming_btn: "抢先获取内测资格",
+        email_placeholder: "请输入你的邮箱地址（例如 user@gmail.com）",
+        coming_success: "🎉 恭喜你成功加入优先内测列表！引擎正式开放时我们将第一时间邮件通知你。",
+        section_character: "按角色类型浏览",
+        desc_girl: "轻松生成富有张力的动漫女声，涵盖活力傲娇、清纯学妹与治愈系魔法少女音色。AI 深度还原音调变化与语气细节，为视觉小说、二次元短片及角色配音提供广播级高音质。",
+        btn_girl: "探索少女音色 →",
+        desc_boy: "打造充满少年感与冒险精神的年轻男声，完美呈现热血、坚毅与不屈的羁绊之声。非常适合年轻冒险者、智慧军师及热血运动题材主角的战吼与深情对白。",
+        btn_boy: "探索少年音色 →",
+        desc_hero: "呈现充满力量与史诗感的英雄领袖嗓音，兼具沉稳共鸣与崇高信念。专为奇幻圣骑士、勇猛战士及正义指挥官量身定制，让核心主角在每个重大场景中都极具号召力。",
+        btn_hero: "探索英雄音色 →",
+        desc_villain: "为你的故事注入阴郁迷人的反派声线，涵盖低沉沙哑、冷酷计算与令人战栗的笑声。非常适合深沉霸主、黑化术士及反英雄角色，在独立游戏与动画中树立压迫感。",
+        btn_villain: "探索反派音色 →",
+        desc_robot: "合成极具未来科技感的机甲车载电脑、人造人伙伴及合成声线。具备金属相位声码器质感、规律语调与科幻滤波效果，专为太空歌剧、赛博朋克与科幻游戏打造。",
+        btn_robot: "探索机械音色 →",
+        section_cases: "按使用场景浏览",
+        desc_vtuber: "为你的虚拟主播形象赋予生动且具辨识度的声线，深度契合 Live2D 与 3D 模型。可快速制作入场欢迎语、上舰提示音、背景世界观解说及打赏互动语音。",
+        btn_vtuber: "探索 VTuber 场景 →",
+        desc_games: "助力独立游戏开发者批量生成高品质 NPC 对话、战斗音效及剧情配音。大幅缩短选角周期并削减本地化成本，为 JRPG、AVG 视觉小说打造纯正沉浸感。",
+        btn_games: "探索游戏开发场景 →",
+        desc_fandubs: "无需昂贵的录音麦克风与隔音室，即可为同人漫画、汉化漫话及恶搞二创短视频赋予影视级声演表现力，精准传达角色情绪起伏与戏剧化节奏。",
+        btn_fandubs: "探索同人二创场景 →",
+        footer_brand_desc: "专为内容创作者、游戏开发者、虚拟主播及二次元爱好者打造的前沿 AI 动漫语音合成平台。",
+        footer_col1: "角色音色",
+        footer_col2: "应用场景",
+        alert_empty: "请输入需要合成配音的台词文本！"
+      }
+    };
+
+    let currentLang = 'en';
+
+    // 2. 切换语言函数
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        const isActive = btn.dataset.lang === lang;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (translations[lang] && translations[lang][key]) {
+          el.setAttribute('placeholder', translations[lang][key]);
+        }
+      });
+
+      try {
+        localStorage.setItem('animvoai_lang', lang);
+      } catch (e) {}
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 绑定多语言切换
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const selected = e.target.getAttribute('data-lang');
+          setLanguage(selected);
+        });
+      });
+
+      try {
+        const savedLang = localStorage.getItem('animvoai_lang');
+        if (savedLang && (savedLang === 'en' || savedLang === 'zh')) {
+          setLanguage(savedLang);
+        }
+      } catch(e) {}
+
+      const generateBtn = document.getElementById('generate-btn');
+      const emailForm = document.getElementById('email-form');
+      const emailInput = document.getElementById('email-input');
+      const emailSuccess = document.getElementById('email-success');
+      const waitlistCard = document.getElementById('waitlist-card');
+      const scriptInput = document.getElementById('script-input');
+      const characterType = document.getElementById('character-type');
+
+      // 点击“立即生成”按钮：才出现邮件预约部分
+      if (generateBtn) {
+        generateBtn.addEventListener('click', () => {
+          const text = scriptInput.value.trim();
+          if (!text) {
+            alert(translations[currentLang].alert_empty);
+            scriptInput.focus();
+            return;
+          }
+
+          // 短暂模拟加载交互 (0.6秒)，随后平滑展示邮件预约卡片
+          generateBtn.disabled = true;
+          generateBtn.innerHTML = `
+            <div class="loading-spinner"></div>
+            <span>${currentLang === 'zh' ? '正在连接引擎...' : 'Connecting Engine...'}</span>
+          `;
+
+          // 上报点击意图到 Google Analytics
+          if (typeof gtag === 'function') {
+            gtag('event', 'generate_intent_click', {
+              'character_type': characterType ? characterType.value : '',
+              'script_length': text.length
+            });
+          }
+
+          setTimeout(() => {
+            // 恢复按钮正常状态
+            generateBtn.disabled = false;
+            generateBtn.innerHTML = `
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+              <span>${translations[currentLang].btn_generate}</span>
+            `;
+
+            // 展示邮件输入卡片（带下落淡入动画）
+            waitlistCard.style.display = 'block';
+
+            // 平滑滚动并自动聚焦到邮箱输入框
+            waitlistCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+              if (emailInput) emailInput.focus();
+            }, 300);
+          }, 600);
+        });
+      }
+
+      // 邮箱提交表单
+      if (emailForm) {
+        emailForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const emailVal = emailInput.value.trim();
+          if (!emailVal) return;
+
+          const submitBtn = document.getElementById('email-submit-btn');
+          if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = currentLang === 'zh' ? '提交中...' : 'Submitting...';
+          }
+
+          // 上报邮箱捕获事件到 Google Analytics
+          if (typeof gtag === 'function') {
+            gtag('event', 'lead_email_submitted', {
+              'email': emailVal,
+              'selected_character': characterType ? characterType.value : '',
+              'script_preview': scriptInput ? scriptInput.value.substring(0, 50) : ''
+            });
+          }
+
+          // 展示提交成功反馈
+          setTimeout(() => {
+            if (emailSuccess) emailSuccess.style.display = 'block';
+            if (submitBtn) {
+              submitBtn.textContent = currentLang === 'zh' ? '已登记' : 'Joined';
+            }
+            emailInput.disabled = true;
+          }, 500);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
